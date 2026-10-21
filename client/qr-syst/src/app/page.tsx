@@ -26,7 +26,7 @@ export default function DashboardPage() {
   return (
     <main className="min-h-screen bg-slate-100 text-slate-900">
       <div className="flex min-h-screen">
-        {/* Sidebar */}
+        
         <aside className="hidden w-64 shrink-0 bg-slate-950 p-6 text-white md:block">
           <h1 className="text-2xl font-bold">QR Analytics</h1>
 
@@ -43,7 +43,7 @@ export default function DashboardPage() {
             </a>
 
             <a
-              href="/qr-codes"
+              href="/qrcode"
               className="block rounded-lg px-4 py-3 text-slate-300 hover:bg-slate-800"
             >
               QR Codes
@@ -58,7 +58,7 @@ export default function DashboardPage() {
           </nav>
         </aside>
 
-        {/* Main content */}
+      
         <section className="min-w-0 flex-1 p-5 sm:p-8">
           <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -80,7 +80,6 @@ export default function DashboardPage() {
             </span>
           </header>
 
-          {/* Summary cards */}
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {stats.map((stat) => (
               <article
@@ -102,7 +101,6 @@ export default function DashboardPage() {
             ))}
           </div>
 
-          {/* Getting started section */}
           <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <h3 className="text-xl font-semibold">
               Your QR system
