@@ -98,6 +98,7 @@ export default function LoginPage() {
               type="password"
               autoComplete="current-password"
               required
+              disabled={loading}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
