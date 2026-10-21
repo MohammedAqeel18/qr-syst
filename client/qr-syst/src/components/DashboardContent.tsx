@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { apiRequest } from "@/lib/api";
+import DailyScansChart from "./DailyScansChart";
 
 interface AnalyticsSummary {
   totalScans: number;
@@ -180,6 +181,9 @@ export default function DashboardContent() {
               View Analytics
             </Link>
           </div>
+          <DailyScansChart
+             dailyScans={analytics?.dailyScans ?? []}
+            />
         </section>
       </main>
     </div>
