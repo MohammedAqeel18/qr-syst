@@ -2,6 +2,7 @@
 import type { RequestHandler } from "express";
 import bcrypt from "bcryptjs";
 import { AdminModel } from "../models/admin.model.ts";
+import { randomBytes } from "node:crypto";
 
 export const login: RequestHandler = async (
   req,
@@ -123,4 +124,27 @@ export const getCurrentAdmin: RequestHandler = async (
   } catch (error) {
     next(error);
   }
+};
+
+
+
+
+export const getCsrfToken: RequestHandler = (
+  req,
+  res,
+  next
+) => {
+  req.session.csrfToken = randomBytes(32).toString("hex");
+
+  req.session.save((error) => {
+    if (error) {
+      next(error);
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      csrfToken: req.session.csrfToken,
+    });
+  });
 };

@@ -11,6 +11,7 @@ import authRoutes from "./routes/auth.routes.js";
 import qrRoutes from "./routes/qr.routes.js";
 import { requireAdmin } from "./middleware/requireAdmin.js";
 import { checkOrigin } from "./middleware/checkOrigin.js";
+import { requireCsrf } from "./middleware/requireCsrf.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5000;
@@ -77,8 +78,8 @@ app.get("/api/health", (_req, res) => {
 
 app.use("/api/auth", authRoutes);
 
-// All QR management endpoints require an authenticated admin.
-app.use("/api/qr", requireAdmin, qrRoutes);
+
+app.use("/api/qr", requireAdmin, requireCsrf, qrRoutes);
 
 app.use(
   (
@@ -95,6 +96,7 @@ app.use(
     });
   }
 );
+
 
 async function startServer(): Promise<void> {
   try {
