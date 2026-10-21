@@ -1,7 +1,7 @@
 
 import type { RequestHandler } from "express";
 import bcrypt from "bcryptjs";
-import { AdminModel } from "../models/admin.model.js";
+import { AdminModel } from "../models/admin.model.ts";
 
 export const login: RequestHandler = async (
   req,
