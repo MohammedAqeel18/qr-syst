@@ -13,7 +13,7 @@ import { requireAdmin } from "./middleware/requireAdmin.ts";
 import { checkOrigin } from "./middleware/checkOrigin.ts";
 import { requireCsrf } from "./middleware/requireCsrf.ts";
 import redirectRoutes from "./routes/redirect.routes.ts";
-
+import analyticsRoutes from "./routes/analytics.routes.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5000;
@@ -82,6 +82,8 @@ app.use("/api/auth", authRoutes);
 
 app.use("/r", redirectRoutes);
 app.use("/api/qr", requireAdmin, requireCsrf, qrRoutes);
+
+app.use("/api/analytics", requireAdmin, analyticsRoutes);
 
 app.use(
   (
