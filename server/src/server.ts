@@ -6,12 +6,14 @@ import helmet from "helmet";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 
-import { connectDB } from "./config/db.js";
-import authRoutes from "./routes/auth.routes.js";
+import { connectDB } from "./config/db.ts";
+import authRoutes from "./routes/auth.routes.ts";
 import qrRoutes from "./routes/qr.routes.js";
-import { requireAdmin } from "./middleware/requireAdmin.js";
-import { checkOrigin } from "./middleware/checkOrigin.js";
-import { requireCsrf } from "./middleware/requireCsrf.js";
+import { requireAdmin } from "./middleware/requireAdmin.ts";
+import { checkOrigin } from "./middleware/checkOrigin.ts";
+import { requireCsrf } from "./middleware/requireCsrf.ts";
+import redirectRoutes from "./routes/redirect.routes.ts";
+
 
 const app = express();
 const PORT = Number(process.env.PORT) || 5000;
@@ -78,7 +80,7 @@ app.get("/api/health", (_req, res) => {
 
 app.use("/api/auth", authRoutes);
 
-
+app.use("/r", redirectRoutes);
 app.use("/api/qr", requireAdmin, requireCsrf, qrRoutes);
 
 app.use(
