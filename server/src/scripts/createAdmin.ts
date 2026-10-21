@@ -2,7 +2,7 @@
 import "dotenv/config";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import { AdminModel } from "../models/admin.model.js";
+import { AdminModel } from "../models/admin.model.ts";
 
 async function createAdmin(): Promise<void> {
   const mongoUri = process.env.MONGODB_URI;
