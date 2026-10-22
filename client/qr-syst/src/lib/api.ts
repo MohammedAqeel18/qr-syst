@@ -44,10 +44,18 @@ export async function apiRequest<T>(
   const method = (options.method ?? "GET").toUpperCase();
   const headers = new Headers(options.headers);
 
-  if (!["GET", "HEAD", "OPTIONS"].includes(method)) {
-    const csrfToken = await getCsrfToken();
-    headers.set("X-CSRF-Token", csrfToken);
-  }
+
+const normalizedPath = path.split("?")[0];
+
+const isSafeMethod = ["GET", "HEAD", "OPTIONS"].includes(method);
+
+const isLoginRequest = normalizedPath === "/api/auth/login";
+
+if (!isSafeMethod && !isLoginRequest) {
+  const csrfToken = await getCsrfToken();
+  headers.set("X-CSRF-Token", csrfToken);
+}
+
 
   const response = await fetch(`${API_URL}${path}`, {
     ...options,
