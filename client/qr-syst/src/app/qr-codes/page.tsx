@@ -26,8 +26,10 @@ type QRCreateResponse = {
   data: QRCode;
 };
 
+
 const QR_REDIRECT_BASE_URL =
 process.env.NEXT_PUBLIC_QR_REDIRECT_BASE_URL?.replace(/\/+$/, "");
+
 
 export default function QRCodesPage() {
   const [qrCodes, setQrCodes] = useState<QRCode[]>([]);
@@ -292,14 +294,14 @@ export default function QRCodesPage() {
     <>
       <QRCodeCanvas
         id={`qr-canvas-${qr.qrId}`}
-        value={`${QR_REDIRECT_BASE_URL}/${qr.qrId}`}
+        value={`${QR_REDIRECT_BASE_URL}/r/${qr.qrId}`}
         size={200}
         level="H"
         marginSize={4}
       />
 
       <p className="mt-2 break-all text-xs text-slate-500">
-        Scan URL: {`${QR_REDIRECT_BASE_URL}/${qr.qrId}`}
+        Scan URL: {`${QR_REDIRECT_BASE_URL}/r/${qr.qrId}`}
       </p>
 
       <button
