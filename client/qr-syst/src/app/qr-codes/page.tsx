@@ -3,9 +3,11 @@
 
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { apiRequest } from "@/lib/api";
+import { QRCodeCanvas } from "qrcode.react";
 
 type QRCode = {
   _id: string;
+  qrId: string;
   name: string;
   iosUrl: string;
   androidUrl: string;
@@ -23,6 +25,9 @@ type QRCreateResponse = {
   message: string;
   data: QRCode;
 };
+
+const QR_REDIRECT_BASE_URL =
+process.env.NEXT_PUBLIC_QR_REDIRECT_BASE_URL?.replace(/\/+$/, "");
 
 export default function QRCodesPage() {
   const [qrCodes, setQrCodes] = useState<QRCode[]>([]);
@@ -89,6 +94,28 @@ export default function QRCodesPage() {
       setCreating(false);
     }
   }
+
+  function downloadQRCode(qr: QRCode) {
+  const canvas = document.getElementById(
+    `qr-canvas-${qr.qrId}`,
+  ) as HTMLCanvasElement | null;
+
+  if (!canvas) {
+    setError("QR image is not ready. Please try again.");
+    return;
+  }
+
+  const link = document.createElement("a");
+
+  link.href = canvas.toDataURL("image/png");
+
+  const safeName =
+    qr.name.trim().replace(/[^a-z0-9-_]+/gi, "-") || "qr-code";
+
+  link.download = `${safeName}.png`;
+
+  link.click();
+}
 
   return (
     <main className="min-h-screen bg-slate-100 text-slate-900">
@@ -260,7 +287,35 @@ export default function QRCodesPage() {
                 {qrCodes.map((qr) => (
                   <article key={qr._id} className="p-5">
                     <h4 className="font-semibold">{qr.name}</h4>
+                  <div className="mt-4">
+  {QR_REDIRECT_BASE_URL ? (
+    <>
+      <QRCodeCanvas
+        id={`qr-canvas-${qr.qrId}`}
+        value={`${QR_REDIRECT_BASE_URL}/${qr.qrId}`}
+        size={200}
+        level="H"
+        marginSize={4}
+      />
 
+      <p className="mt-2 break-all text-xs text-slate-500">
+        Scan URL: {`${QR_REDIRECT_BASE_URL}/${qr.qrId}`}
+      </p>
+
+      <button
+        type="button"
+        onClick={() => downloadQRCode(qr)}
+        className="mt-3 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+      >
+        Download QR as PNG
+      </button>
+    </>
+  ) : (
+    <p className="text-sm text-red-600">
+      Set NEXT_PUBLIC_QR_REDIRECT_BASE_URL in .env.local.
+    </p>
+  )}
+</div>
                     <p className="mt-2 text-sm text-slate-500">
                       Apple App Store
                     </p>
