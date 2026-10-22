@@ -1,6 +1,6 @@
 
 import type { RequestHandler } from "express";
-import { QRCodeModel } from "../models/qrCode.model.ts";
+import { QRCodeModel } from "../models/qrcode.model.ts";
 import { createQRCodeSchema } from "../validators/qr.validator.js";
 
 export const createQRCode: RequestHandler = async (

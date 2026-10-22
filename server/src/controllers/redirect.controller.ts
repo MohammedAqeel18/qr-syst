@@ -1,6 +1,6 @@
 
 import type { RequestHandler } from "express";
-import { QRCodeModel } from "../models/qrCode.model.ts";
+import { QRCodeModel } from "../models/qrcode.model.ts";
 import { ScanEventModel } from "../models/scanEvent.model.ts";
 import type { DeviceType } from "../models/scanEvent.model.ts";
 

@@ -1,7 +1,7 @@
 
 import type { RequestHandler } from "express";
 import { ScanEventModel } from "../models/scanEvent.model.js";
-import { QRCodeModel } from "../models/qrCode.model.ts";
+import { QRCodeModel } from "../models/qrcode.model.ts";
 export const getAnalyticsSummary: RequestHandler = async (
   _req,
   res,
