@@ -106,9 +106,9 @@ async function startServer(): Promise<void> {
   try {
     await connectDB();
 
-    app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
-    });
+   app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server listening on port ${PORT}`);
+});
   } catch (error) {
     console.error("Failed to start server:", error);
     process.exit(1);
