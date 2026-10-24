@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { apiRequest } from "@/lib/api";
 import DashboardContent from "@/components/DashboardContent";
 
@@ -17,36 +18,54 @@ interface AuthResponse {
 }
 
 export default function ProtectedDashboard() {
+  const router = useRouter();
+
   const [admin, setAdmin] = useState<Admin | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  
-useEffect(() => {
-  async function verifySession() {
-    try {
-      const response = await apiRequest<AuthResponse>(
-        "/api/auth/me"
-      );
+  useEffect(() => {
+    let cancelled = false;
 
-      setAdmin(response.admin);
-      setError("");
-    } catch (err) {
-      const message =
-        err instanceof Error
-          ? err.message
-          : "Unknown session verification error";
+    async function verifySession() {
+      try {
+        const response = await apiRequest<AuthResponse>(
+          "/api/auth/me"
+        );
 
-      console.error("Session verification failed:", message);
-      setError(message);
-    } finally {
-      setLoading(false);
+        if (cancelled) return;
+
+        setAdmin(response.admin);
+        setError("");
+      } catch (err) {
+        if (cancelled) return;
+
+        const message =
+          err instanceof Error
+            ? err.message
+            : "Unknown session verification error";
+
+        console.error("Session verification failed:", message);
+
+        if (message.toLowerCase().includes("authentication required")) {
+          router.replace("/login");
+          return;
+        }
+
+        setError(message);
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
     }
-  }
 
-  verifySession();
-}, []);
+    void verifySession();
 
+    return () => {
+      cancelled = true;
+    };
+  }, [router]);
 
   if (loading) {
     return (
@@ -59,7 +78,13 @@ useEffect(() => {
   }
 
   if (error) {
-    return <p role="alert">{error}</p>;
+    return (
+      <main className="flex min-h-screen items-center justify-center">
+        <p role="alert" className="text-red-600">
+          {error}
+        </p>
+      </main>
+    );
   }
 
   if (!admin) {
