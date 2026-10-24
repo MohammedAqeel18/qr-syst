@@ -21,23 +21,32 @@ export default function ProtectedDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    async function verifySession() {
-      try {
-        const response = await apiRequest<AuthResponse>(
-          "/api/auth/me"
-        );
+  
+useEffect(() => {
+  async function verifySession() {
+    try {
+      const response = await apiRequest<AuthResponse>(
+        "/api/auth/me"
+      );
 
-        setAdmin(response.admin);
-      } catch {
-        window.location.replace("/login");
-      } finally {
-        setLoading(false);
-      }
+      setAdmin(response.admin);
+      setError("");
+    } catch (err) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Unknown session verification error";
+
+      console.error("Session verification failed:", message);
+      setError(message);
+    } finally {
+      setLoading(false);
     }
+  }
 
-    verifySession();
-  }, []);
+  verifySession();
+}, []);
+
 
   if (loading) {
     return (
