@@ -39,12 +39,25 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(helmet());
 
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://qr-syst.vercel.app",
+];
+
 app.use(
   cors({
-    origin: FRONTEND_ORIGIN,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Origin not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
+
 
 app.use(express.json({ limit: "10kb" }));
 
@@ -102,13 +115,14 @@ app.use(
 );
 
 
+
 async function startServer(): Promise<void> {
   try {
     await connectDB();
 
-   app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
   } catch (error) {
     console.error("Failed to start server:", error);
     process.exit(1);
@@ -116,3 +130,4 @@ async function startServer(): Promise<void> {
 }
 
 void startServer();
+
