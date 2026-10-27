@@ -355,8 +355,19 @@ export default function QRCodesPage() {
                 ))}
               </div>
             )}
+             
           </section>
+          <div className="mt-8">
+          <a
+            href="/"
+            className="font-medium text-blue-600 hover:text-blue-800"
+          >
+            ← Back to Dashboard
+          </a>
+        </div>
         </section>
+
+        
       </div>
     </main>
   );

@@ -89,7 +89,8 @@ export default function DailyScansChart({
               dataKey="count"
               name="Scans"
               fill="#2563eb"
-              radius={[5, 5, 0, 0]}
+              barSize={220}
+              radius={[0, 0, 0, 0]}
             />
           </BarChart>
         </ResponsiveContainer>
