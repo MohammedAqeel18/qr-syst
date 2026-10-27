@@ -14,8 +14,13 @@ type LoginResponse = {
 
 function BrandIcon() {
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-600">
-      <svg viewBox="0 0 40 40" fill="none" className="h-7 w-7" aria-hidden="true">
+    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-600">
+      <svg
+        viewBox="0 0 40 40"
+        fill="none"
+        className="h-6 w-6"
+        aria-hidden="true"
+      >
         <path
           d="M7 7h10v10H7zM23 7h10v10H23zM7 23h10v10H7z"
           stroke="white"
@@ -36,7 +41,12 @@ function BrandIcon() {
 
 function LockIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="h-4 w-4" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="h-4 w-4"
+      aria-hidden="true"
+    >
       <rect
         x="5"
         y="10"
@@ -73,6 +83,7 @@ export default function LoginPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     if (loading) return;
 
     setError("");
@@ -103,43 +114,44 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-[100svh] items-center justify-center bg-black px-4 py-4 text-white sm:px-6">
+    <main className="flex min-h-[100svh] items-center justify-center overflow-x-hidden bg-black px-4 py-3 text-white">
       <div className="my-auto w-full max-w-[640px]">
-        {/* Compact brand header */}
-        <header className="mb-4 flex items-center justify-center gap-3">
+    
+        <header className="mb-3 flex items-center justify-center gap-2.5">
           <BrandIcon />
+
           <div>
-            <h1 className="text-xl font-bold tracking-tight">
+            <h1 className="text-lg font-bold leading-5 tracking-tight">
               QR <span className="text-blue-400">Analytics</span>
             </h1>
-            <p className="mt-0.5 text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-500">
+            <p className="mt-0.5 text-[9px] font-medium uppercase tracking-[0.18em] text-neutral-500">
               Administration Portal
             </p>
           </div>
         </header>
 
-     
-        <section className="rounded-2xl bg-white p-5 text-neutral-900 shadow-2xl shadow-white/[0.04] sm:px-8 sm:py-5">
-          <div className="mb-5">
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-bold tracking-wider text-blue-700">
+        <section className="rounded-2xl bg-white p-4 text-neutral-900 shadow-2xl shadow-white/[0.04] sm:px-7 sm:py-5">
+          <div className="mb-3">
+            <div className="mb-1.5 inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-2 py-1 text-[9px] font-bold tracking-wider text-blue-700">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
               SECURE ADMIN ACCESS
             </div>
 
-            <h2 className="text-2xl font-bold tracking-tight text-neutral-950">
+            <h2 className="text-2xl font-bold leading-tight tracking-tight text-neutral-950">
               Welcome back.
             </h2>
 
-            <p className="mt-1.5 text-sm leading-5 text-neutral-500">
+            <p className="mt-1 text-sm leading-5 text-neutral-500">
               Sign in to manage your QR codes and analytics.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3">
+
             <div>
               <label
                 htmlFor="email"
-                className="mb-1.5 block text-sm font-semibold text-neutral-800"
+                className="mb-1 block text-sm font-semibold text-neutral-800"
               >
                 Email address
               </label>
@@ -155,14 +167,15 @@ export default function LoginPage() {
                 required
                 maxLength={254}
                 disabled={loading}
-                className="h-11 w-full rounded-lg border border-neutral-200 bg-white px-3.5 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 disabled:opacity-60"
+                className="h-10 w-full rounded-lg border border-neutral-200 bg-white px-3 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 disabled:opacity-60"
               />
             </div>
+
 
             <div>
               <label
                 htmlFor="password"
-                className="mb-1.5 block text-sm font-semibold text-neutral-800"
+                className="mb-1 block text-sm font-semibold text-neutral-800"
               >
                 Password
               </label>
@@ -178,7 +191,7 @@ export default function LoginPage() {
                   onChange={(event) => setPassword(event.target.value)}
                   required
                   disabled={loading}
-                  className="h-11 w-full rounded-lg border border-neutral-200 bg-white px-3.5 pr-16 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 disabled:opacity-60"
+                  className="h-10 w-full rounded-lg border border-neutral-200 bg-white px-3 pr-14 text-sm text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 disabled:opacity-60"
                 />
 
                 <button
@@ -187,27 +200,29 @@ export default function LoginPage() {
                   disabled={loading}
                   aria-label={showPassword ? "Hide password" : "Show password"}
                   aria-pressed={showPassword}
-                  className="absolute inset-y-0 right-0 rounded-r-lg px-3.5 text-xs font-semibold text-neutral-500 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-600"
+                  className="absolute inset-y-0 right-0 rounded-r-lg px-3 text-xs font-semibold text-neutral-500 hover:text-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-600"
                 >
                   {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
             </div>
 
+
             {error && (
               <div
                 role="alert"
                 aria-live="polite"
-                className="rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-700"
+                className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
               >
                 {error}
               </div>
             )}
 
+         
             <button
               type="submit"
               disabled={loading || !email.trim() || !password}
-              className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 px-4 text-sm font-semibold text-white transition hover:from-blue-700 hover:to-violet-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/25 disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 px-4 text-sm font-semibold text-white transition hover:from-blue-700 hover:to-violet-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-500/25 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? (
                 <>
@@ -226,7 +241,8 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-4 flex items-center justify-center gap-2 border-t border-neutral-100 pt-3.5 text-xs text-neutral-500">
+
+          <div className="mt-3 flex items-center justify-center gap-2 border-t border-neutral-100 pt-3 text-xs text-neutral-500">
             <span className="text-blue-600">
               <LockIcon />
             </span>
@@ -234,32 +250,9 @@ export default function LoginPage() {
           </div>
         </section>
 
-        <footer className="mt-4">
-          <div className="flex items-center justify-center gap-5 text-center">
-            <div>
-              <p className="text-xs font-semibold text-neutral-200">Track</p>
-              <p className="mt-0.5 text-[10px] text-neutral-500">Analytics</p>
-            </div>
-
-            <span className="h-6 w-px bg-neutral-800" />
-
-            <div>
-              <p className="text-xs font-semibold text-neutral-200">Manage</p>
-              <p className="mt-0.5 text-[10px] text-neutral-500">QR codes</p>
-            </div>
-
-            <span className="h-6 w-px bg-neutral-800" />
-
-            <div>
-              <p className="text-xs font-semibold text-neutral-200">Secure</p>
-              <p className="mt-0.5 text-[10px] text-neutral-500">Your data</p>
-            </div>
-          </div>
-
-          <p className="mt-3 text-center text-[9px] tracking-[0.18em] text-neutral-600">
-            QR ANALYTICS · SECURE ACCESS
-          </p>
-        </footer>
+        <p className="mt-3 text-center text-[10px] tracking-wider text-neutral-600">
+          QR ANALYTICS · SECURE ACCESS
+        </p>
       </div>
     </main>
   );
