@@ -1,6 +1,4 @@
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 type CsrfResponse = {
   success: boolean;
   csrfToken: string;
@@ -15,11 +13,7 @@ type ApiErrorResponse = {
 };
 
 async function getCsrfToken(): Promise<string> {
-  if (!API_URL) {
-    throw new Error("NEXT_PUBLIC_API_URL is not configured.");
-  }
-
-  const response = await fetch(`${API_URL}/api/auth/csrf`, {
+  const response = await fetch("/api/auth/csrf", {
     method: "GET",
     credentials: "include",
   });
@@ -37,27 +31,19 @@ export async function apiRequest<T>(
   path: string,
   options: RequestInit = {},
 ): Promise<T> {
-  if (!API_URL) {
-    throw new Error("NEXT_PUBLIC_API_URL is not configured.");
-  }
-
   const method = (options.method ?? "GET").toUpperCase();
   const headers = new Headers(options.headers);
 
+  const normalizedPath = path.split("?")[0];
+  const isSafeMethod = ["GET", "HEAD", "OPTIONS"].includes(method);
+  const isLoginRequest = normalizedPath === "/api/auth/login";
 
-const normalizedPath = path.split("?")[0];
+  if (!isSafeMethod && !isLoginRequest) {
+    const csrfToken = await getCsrfToken();
+    headers.set("X-CSRF-Token", csrfToken);
+  }
 
-const isSafeMethod = ["GET", "HEAD", "OPTIONS"].includes(method);
-
-const isLoginRequest = normalizedPath === "/api/auth/login";
-
-if (!isSafeMethod && !isLoginRequest) {
-  const csrfToken = await getCsrfToken();
-  headers.set("X-CSRF-Token", csrfToken);
-}
-
-
-  const response = await fetch(`${API_URL}${path}`, {
+  const response = await fetch(path, {
     ...options,
     method,
     credentials: "include",
