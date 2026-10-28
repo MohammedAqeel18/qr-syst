@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { apiRequest } from "@/lib/api";
 import DailyScansChart from "./DailyScansChart";
 
@@ -23,6 +24,39 @@ interface AnalyticsResponse {
 }
 
 export default function DashboardContent() {
+
+
+  const router = useRouter();
+
+  const [loggingOut, setLoggingOut] = useState(false);
+  const [logoutError, setLogoutError] = useState("");
+
+  async function handleLogout() {
+    if (loggingOut) return;
+
+    setLoggingOut(true);
+    setLogoutError("");
+
+    try {
+      await apiRequest<{ success: boolean }>(
+        "/api/auth/logout",
+        {
+          method: "POST",
+        }
+      );
+
+      router.replace("/login");
+    } catch (err) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Unable to log out. Please try again.";
+
+      setLogoutError(message);
+      setLoggingOut(false);
+    }
+  }
+
   const [analytics, setAnalytics] =
     useState<AnalyticsSummary | null>(null);
 
@@ -104,6 +138,24 @@ export default function DashboardContent() {
             Analytics
           </Link>
         </nav>
+              <button
+          type="button"
+          onClick={handleLogout}
+          disabled={loggingOut}
+          className="mt-8 w-full rounded-lg border border-slate-700 px-4 py-3 text-left font-medium text-slate-200 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {loggingOut ? "Signing out..." : "Logout"}
+        </button>
+
+        {logoutError && (
+          <p
+            role="alert"
+            className="mt-3 break-words text-sm text-red-300"
+          >
+            {logoutError}
+          </p>
+        )}
+
       </aside>
 
       <main className="min-w-0 flex-1 p-6 md:p-10">
