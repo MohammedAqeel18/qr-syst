@@ -257,7 +257,7 @@ export default function LoginPage() {
         }
       `}</style>
 
-      {/* Ambient background */}
+
       <div
         aria-hidden="true"
         className="ambient-orb pointer-events-none absolute left-[7%] top-[3%] size-96 rounded-full bg-blue-300/35 blur-[100px]"
@@ -273,7 +273,7 @@ export default function LoginPage() {
       />
 
       <section className="login-card relative m-auto grid w-full max-w-[920px] overflow-hidden rounded-[30px] border border-white/90 bg-white/90 shadow-[0_35px_100px_rgba(34,42,31,.16)] backdrop-blur-2xl md:grid-cols-[.72fr_1.28fr]">
-        {/* Premium side panel */}
+        
         <aside className="relative hidden overflow-hidden bg-[#10131c] p-8 text-white md:flex md:flex-col md:justify-between">
           <div
             aria-hidden="true"
@@ -297,7 +297,7 @@ export default function LoginPage() {
 
             <div>
               <p className="font-semibold tracking-[-0.03em]">
-                QR <span className="text-blue-400">Analytics</span>
+                IDriver <span className="text-blue-400">QR System</span>
               </p>
               <p className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-white/40">
                 Administration portal
@@ -476,12 +476,7 @@ export default function LoginPage() {
                 Keep me signed in
               </label>
 
-              <a
-                href="/forgot-password"
-                className="text-xs font-semibold text-blue-600 underline-offset-4 transition hover:text-blue-700 hover:underline"
-              >
-                Forgot password?
-              </a>
+              
             </div>
 
             {error && (
