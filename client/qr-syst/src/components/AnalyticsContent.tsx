@@ -116,7 +116,7 @@ export default function AnalyticsContent() {
         </header>
 
         <section className="grid gap-5 sm:grid-cols-2">
-          <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <article className=" border border-slate-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-medium text-slate-500">
               Total Scans
             </p>
@@ -126,7 +126,7 @@ export default function AnalyticsContent() {
             </p>
           </article>
 
-          <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <article className=" border border-slate-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-medium text-slate-500">
               Device Categories
             </p>
@@ -141,7 +141,7 @@ export default function AnalyticsContent() {
           </article>
         </section>
 
-        <section className="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="mt-8  border border-slate-200 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-slate-900">
             Scans by Device
           </h2>
@@ -166,7 +166,7 @@ export default function AnalyticsContent() {
                     </span>
                   </div>
 
-                  <div className="h-3 overflow-hidden rounded-full bg-slate-100">
+                  <div className="h-3 overflow-hidden  bg-slate-100">
                     <div
                       className="h-full rounded-full bg-blue-600"
                       style={{ width: `${percentage}%` }}
