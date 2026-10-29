@@ -347,7 +347,7 @@ export default function LoginPage() {
           </div>
         </aside>
 
-        {/* Login form */}
+    
         <div className="p-6 sm:p-8 lg:px-11 lg:py-9">
           <div className="mb-5 flex items-center gap-3 md:hidden">
             <BrandMark />
