@@ -150,7 +150,10 @@ export default function QRCodesPage() {
             >
               Analytics
             </a>
+
           </nav>
+
+          
         </aside>
 
         <section className="min-w-0 flex-1 p-5 sm:p-8">
