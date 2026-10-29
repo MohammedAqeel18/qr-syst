@@ -144,7 +144,7 @@ export default function DashboardContent() {
           disabled={loggingOut}
           className="mt-8 w-full rounded-lg border border-slate-700 px-4 py-3 text-left font-medium text-slate-200 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {loggingOut ? "Signing out..." : "SignOut"}
+          {loggingOut ? "Signing out..." : "Sign out"}
         </button>
 
         {logoutError && (
