@@ -3,9 +3,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { apiRequest } from "@/lib/api";
 import DailyScansChart from "./DailyScansChart";
+import AdminLayout from "@/components/AdminLayout";
 
 interface AnalyticsSummary {
   totalScans: number;
@@ -24,39 +24,6 @@ interface AnalyticsResponse {
 }
 
 export default function DashboardContent() {
-
-
-  const router = useRouter();
-
-  const [loggingOut, setLoggingOut] = useState(false);
-  const [logoutError, setLogoutError] = useState("");
-
-  async function handleLogout() {
-    if (loggingOut) return;
-
-    setLoggingOut(true);
-    setLogoutError("");
-
-    try {
-      await apiRequest<{ success: boolean }>(
-        "/api/auth/logout",
-        {
-          method: "POST",
-        }
-      );
-
-      router.replace("/login");
-    } catch (err) {
-      const message =
-        err instanceof Error
-          ? err.message
-          : "Unable to log out. Please try again.";
-
-      setLogoutError(message);
-      setLoggingOut(false);
-    }
-  }
-
   const [analytics, setAnalytics] =
     useState<AnalyticsSummary | null>(null);
 
@@ -108,73 +75,24 @@ export default function DashboardContent() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-100 md:flex">
-      <aside className="w-full bg-slate-900 p-6 text-white md:min-h-screen md:w-64">
-        <h1 className="text-2xl font-bold">QR Analytics</h1>
-
-        <p className="mt-2 text-sm text-slate-400">
-          Administrator Panel
-        </p>
-
-        <nav className="mt-8 space-y-2">
-          <Link
-            href="/"
-            className="block rounded-lg bg-blue-600 px-4 py-3"
-          >
-            Dashboard
-          </Link>
-
-          <Link
-            href="/qr-codes"
-            className="block rounded-lg px-4 py-3 hover:bg-slate-800"
-          >
-            QR Codes
-          </Link>
-
-          <Link
-            href="/analytics"
-            className="block rounded-lg px-4 py-3 hover:bg-slate-800"
-          >
-            Analytics
-          </Link>
-        </nav>
-              <button
-          type="button"
-          onClick={handleLogout}
-          disabled={loggingOut}
-          className="mt-8 w-full rounded-lg border border-slate-700 px-4 py-3 text-left font-medium text-slate-200 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {loggingOut ? "Signing out..." : "Sign out"}
-        </button>
-
-        {logoutError && (
-          <p
-            role="alert"
-            className="mt-3 break-words text-sm text-red-300"
-          >
-            {logoutError}
-          </p>
-        )}
-
-      </aside>
-
+    <AdminLayout>
       <main className="min-w-0 flex-1 p-6 md:p-10">
         <header className="mb-8">
           <p className="text-sm font-medium text-blue-600">
             OVERVIEW
           </p>
 
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">
+          <h2 className="mt-2 text-3xl font-bold text-slate-900 dark:text-slate-100">
             Dashboard
           </h2>
 
-          <p className="mt-2 text-slate-600">
+          <p className="mt-2 text-slate-600 dark:text-slate-400">
             Monitor your QR codes and scan activity.
           </p>
         </header>
 
         {loading && (
-          <p className="mb-6 text-slate-600">
+          <p className="mb-6 text-slate-600 dark:text-slate-400">
             Loading analytics...
           </p>
         )}
@@ -182,62 +100,68 @@ export default function DashboardContent() {
         {error && (
           <p
             role="alert"
-            className="mb-6 rounded-lg bg-red-50 p-4 text-red-700"
+            className="mb-6 rounded-lg bg-red-50 p-4 text-red-700 dark:bg-red-950 dark:text-red-200"
           >
             {error}
           </p>
         )}
 
-        <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <section
+          aria-label="Scan statistics"
+          className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
+        >
           {statistics.map((statistic) => (
             <article
               key={statistic.title}
-              className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+              className=" border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900"
             >
-              <h3 className="text-sm font-medium text-slate-500">
+              <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400">
                 {statistic.title}
               </h3>
 
-              <p className="mt-3 text-3xl font-bold text-slate-900">
+              <p className="mt-3 text-3xl font-bold text-slate-900 dark:text-slate-100">
                 {statistic.value ?? "—"}
               </p>
 
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
                 {statistic.description}
               </p>
             </article>
           ))}
         </section>
 
-        <section className="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-slate-900">
+        <section className="mt-8  border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
             Quick Actions
           </h3>
 
-          <p className="mt-2 text-sm text-slate-600">
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
             Manage your QR codes or review their analytics.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/qr-codes"
-              className="rounded-lg bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-700"
+              className=" bg-blue-600 px-5 py-3 font-medium text-white transition hover:bg-blue-700"
             >
               Manage QR Codes
             </Link>
 
             <Link
               href="/analytics"
-              className="rounded-lg border border-slate-300 px-5 py-3 font-medium text-slate-700 hover:bg-slate-50"
+              className=" border border-slate-300 px-5 py-3 font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
             >
               View Analytics
             </Link>
           </div>
-          <DailyScansChart
-             dailyScans={analytics?.dailyScans ?? []}
+
+          <div className="mt-6">
+            <DailyScansChart
+              dailyScans={analytics?.dailyScans ?? []}
             />
+          </div>
         </section>
       </main>
-    </div>
+    </AdminLayout>
   );
 }
