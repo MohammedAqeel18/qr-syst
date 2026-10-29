@@ -158,7 +158,7 @@ export default function QRCodesPage() {
 
         <section className="min-w-0 flex-1 p-5 sm:p-8">
           <header>
-            <p className="text-sm font-medium text-blue-600">MANAGEMENT</p>
+            <p className="text-sm font-bold text-blue-600">Manage QR</p>
             <h2 className="mt-1 text-3xl font-bold">QR Codes</h2>
             <p className="mt-2 text-slate-500">
               Create and manage your app-download QR codes.
@@ -166,12 +166,12 @@ export default function QRCodesPage() {
           </header>
 
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className=" border border-slate-200 bg-white p-5 shadow-sm">
               <p className="text-sm text-slate-500">Total QR Codes</p>
               <p className="mt-2 text-3xl font-bold">{qrCodes.length}</p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className=" border border-slate-200 bg-white p-5 shadow-sm">
               <p className="text-sm text-slate-500">Storage</p>
               <p className="mt-2 text-3xl font-bold">MongoDB</p>
               <p className="mt-1 text-sm text-slate-500">
@@ -180,7 +180,7 @@ export default function QRCodesPage() {
             </div>
           </div>
 
-          <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <section className="mt-8  border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
             <h3 className="text-lg font-semibold">Create a QR Code</h3>
             <p className="mt-1 text-sm text-slate-500">
               Enter the destination app-store URLs for each platform.
@@ -203,7 +203,7 @@ export default function QRCodesPage() {
                   minLength={2}
                   maxLength={100}
                   placeholder="e.g. Main App Download"
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="w-full  border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
@@ -222,7 +222,7 @@ export default function QRCodesPage() {
                   onChange={(event) => setIosUrl(event.target.value)}
                   required
                   placeholder="https://apps.apple.com/..."
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="w-full  border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
@@ -241,14 +241,14 @@ export default function QRCodesPage() {
                   onChange={(event) => setAndroidUrl(event.target.value)}
                   required
                   placeholder="https://play.google.com/store/apps/..."
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="w-full  border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
               </div>
 
               {error && (
                 <p
                   role="alert"
-                  className="rounded-lg bg-red-50 p-3 text-sm text-red-700"
+                  className=" bg-red-50 p-3 text-sm text-red-700"
                 >
                   {error}
                 </p>
@@ -257,7 +257,7 @@ export default function QRCodesPage() {
               {success && (
                 <p
                   role="status"
-                  className="rounded-lg bg-green-50 p-3 text-sm text-green-700"
+                  className=" bg-green-50 p-3 text-sm text-green-700"
                 >
                   {success}
                 </p>
@@ -266,7 +266,7 @@ export default function QRCodesPage() {
               <button
                 type="submit"
                 disabled={creating}
-                className="rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+                className="bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {creating ? "Creating..." : "Create QR Code"}
               </button>
@@ -310,7 +310,7 @@ export default function QRCodesPage() {
       <button
         type="button"
         onClick={() => downloadQRCode(qr)}
-        className="mt-3 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+        className="mt-3  bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
       >
         Download QR as PNG
       </button>
