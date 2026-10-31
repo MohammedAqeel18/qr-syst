@@ -54,3 +54,42 @@ export const getQRCodes: RequestHandler = async (
     next(error);
   }
 };
+
+
+
+export const deleteQRCode: RequestHandler = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const { qrId } = req.params;
+
+    if (!qrId || typeof qrId !== "string") {
+      res.status(400).json({
+        success: false,
+        message: "A valid QR code ID is required.",
+      });
+      return;
+    }
+
+    const deletedQRCode = await QRCodeModel.findOneAndDelete({
+      qrId,
+    });
+
+    if (!deletedQRCode) {
+      res.status(404).json({
+        success: false,
+        message: "QR code not found.",
+      });
+      return;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "QR code deleted successfully.",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
