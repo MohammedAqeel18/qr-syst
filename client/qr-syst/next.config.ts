@@ -1,7 +1,11 @@
 
 import type { NextConfig } from "next";
 
-const API_SERVER = "https://qr-syst.onrender.com";
+const API_SERVER =
+  process.env.API_SERVER_URL ||
+  (process.env.NODE_ENV === "development"
+    ? "http://localhost:5000"
+    : "https://qr-syst.onrender.com");
 
 const nextConfig: NextConfig = {
   async rewrites() {

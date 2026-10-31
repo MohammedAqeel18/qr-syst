@@ -39,6 +39,7 @@ export default function QRCodesPage() {
 
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -96,6 +97,50 @@ export default function QRCodesPage() {
       setCreating(false);
     }
   }
+
+
+async function handleDelete(qr: QRCode) {
+  const confirmed = window.confirm(
+    `Are you sure you want to delete "${qr.name}"? This action cannot be undone.`
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  setError("");
+  setSuccess("");
+  setDeletingId(qr.qrId);
+
+  try {
+    const response = await apiRequest<{
+      success: boolean;
+      message: string;
+    }>(
+      `/api/qr/${encodeURIComponent(qr.qrId)}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    setQrCodes((currentQRCodes) =>
+      currentQRCodes.filter(
+        (item) => item.qrId !== qr.qrId
+      )
+    );
+
+    setSuccess(response.message);
+  } catch (err) {
+    setError(
+      err instanceof Error
+        ? err.message
+        : "Could not delete QR code."
+    );
+  } finally {
+    setDeletingId(null);
+  }
+}
+
 
   function downloadQRCode(qr: QRCode) {
   const canvas = document.getElementById(
@@ -314,12 +359,31 @@ export default function QRCodesPage() {
       >
         Download QR as PNG
       </button>
+
+      
+
+
     </>
+
   ) : (
     <p className="text-sm text-red-600">
       Set NEXT_PUBLIC_QR_REDIRECT_BASE_URL in .env.local.
     </p>
   )}
+
+
+  <button
+  type="button"
+  onClick={() => handleDelete(qr)}
+  disabled={deletingId !== null}
+  className="ml-2 mt-3  bg-green-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-60"
+>
+  {deletingId === qr.qrId
+    ? "Deleting..."
+    : "Delete QR Code"}
+</button>
+
+
 </div>
                     <p className="mt-2 text-sm text-slate-500">
                       Apple App Store
@@ -375,3 +439,4 @@ export default function QRCodesPage() {
     </main>
   );
 }
+  
