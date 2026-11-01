@@ -376,7 +376,7 @@ async function handleDelete() {
   type="button"
   onClick={() => setQrToDelete(qr)}
   disabled={deletingId !== null}
-  className="ml-2 mt-3 rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+  className="ml-2 mt-3  bg-green-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-60"
 >
   Delete QR Code
 </button>
@@ -470,7 +470,7 @@ async function handleDelete() {
         </button>
       </div>
 
-      <div className="mt-5 rounded-xl bg-red-50 p-4">
+      <div className="mt-5 bg-red-50 p-4">
         <div className="flex items-center gap-3">
           <span className="text-2xl">⚠️</span>
 
@@ -493,7 +493,7 @@ async function handleDelete() {
           type="button"
           onClick={() => setQrToDelete(null)}
           disabled={deletingId !== null}
-          className="rounded-lg border border-slate-300 px-4 py-2 font-semibold text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+          className=" border border-slate-300 px-4 py-2 font-semibold text-slate-700 hover:bg-slate-100 disabled:opacity-50"
         >
           Cancel
         </button>
@@ -502,7 +502,7 @@ async function handleDelete() {
           type="button"
           onClick={handleDelete}
           disabled={deletingId !== null}
-          className="rounded-lg bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {deletingId === qrToDelete.qrId
             ? "Deleting..."
