@@ -40,6 +40,7 @@ export default function QRCodesPage() {
   const [loading, setLoading] = useState(true);
   const [creating, setCreating] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [qrToDelete, setQrToDelete] = useState<QRCode | null>(null);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -99,14 +100,12 @@ export default function QRCodesPage() {
   }
 
 
-async function handleDelete(qr: QRCode) {
-  const confirmed = window.confirm(
-    `Are you sure you want to delete "${qr.name}"? This action cannot be undone.`
-  );
-
-  if (!confirmed) {
+async function handleDelete() {
+  if (!qrToDelete) {
     return;
   }
+
+  const qr = qrToDelete;
 
   setError("");
   setSuccess("");
@@ -130,6 +129,7 @@ async function handleDelete(qr: QRCode) {
     );
 
     setSuccess(response.message);
+    setQrToDelete(null);
   } catch (err) {
     setError(
       err instanceof Error
@@ -372,15 +372,13 @@ async function handleDelete(qr: QRCode) {
   )}
 
 
-  <button
+<button
   type="button"
-  onClick={() => handleDelete(qr)}
+  onClick={() => setQrToDelete(qr)}
   disabled={deletingId !== null}
-  className="ml-2 mt-3  bg-green-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-60"
+  className="ml-2 mt-3 rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
 >
-  {deletingId === qr.qrId
-    ? "Deleting..."
-    : "Delete QR Code"}
+  Delete QR Code
 </button>
 
 
@@ -436,6 +434,84 @@ async function handleDelete(qr: QRCode) {
 
         
       </div>
+
+      {qrToDelete && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+    onClick={() => {
+      if (deletingId === null) {
+        setQrToDelete(null);
+      }
+    }}
+  >
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="delete-dialog-title"
+      className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
+      onClick={(event) => event.stopPropagation()}
+    >
+      <div className="flex items-center justify-between">
+        <h2
+          id="delete-dialog-title"
+          className="text-xl font-bold text-slate-900"
+        >
+          Delete QR Code
+        </h2>
+
+        <button
+          type="button"
+          onClick={() => setQrToDelete(null)}
+          disabled={deletingId !== null}
+          className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 disabled:opacity-50"
+          aria-label="Close confirmation popup"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div className="mt-5 rounded-xl bg-red-50 p-4">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl">⚠️</span>
+
+          <p className="font-semibold text-red-700">
+            Are you sure you want to delete this QR code?
+          </p>
+        </div>
+
+        <p className="mt-3 text-sm text-red-600">
+          QR Code: {qrToDelete.name}
+        </p>
+
+        <p className="mt-2 text-sm text-red-600">
+          This action cannot be undone.
+        </p>
+      </div>
+
+      <div className="mt-6 flex justify-end gap-3">
+        <button
+          type="button"
+          onClick={() => setQrToDelete(null)}
+          disabled={deletingId !== null}
+          className="rounded-lg border border-slate-300 px-4 py-2 font-semibold text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          onClick={handleDelete}
+          disabled={deletingId !== null}
+          className="rounded-lg bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {deletingId === qrToDelete.qrId
+            ? "Deleting..."
+            : "Yes, Delete"}
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </main>
   );
 }
