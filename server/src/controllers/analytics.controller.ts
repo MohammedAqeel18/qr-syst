@@ -2,6 +2,37 @@
 import type { RequestHandler } from "express";
 import { ScanEventModel } from "../models/scanEvent.model.js";
 import { QRCodeModel } from "../models/qrcode.model.ts";
+
+
+
+interface DailyScanResult {
+  _id: string;
+  count: number;
+}
+
+function buildLastSevenDays(
+  dailyResults: DailyScanResult[],
+  startDate: Date
+) {
+  const scanCounts = new Map(
+    dailyResults.map((item) => [item._id, item.count])
+  );
+
+  return Array.from({ length: 7 }, (_, index) => {
+    const date = new Date(startDate);
+
+    date.setUTCDate(date.getUTCDate() + index);
+
+    const dateKey = date.toISOString().slice(0, 10);
+
+    return {
+      date: dateKey,
+      count: scanCounts.get(dateKey) ?? 0,
+    };
+  });
+}
+
+
 export const getAnalyticsSummary: RequestHandler = async (
   _req,
   res,
@@ -73,11 +104,9 @@ export const getAnalyticsSummary: RequestHandler = async (
         iosScans: deviceCounts.ios,
         androidScans: deviceCounts.android,
         otherScans: deviceCounts.other,
-        dailyScans: (result?.daily ?? []).map(
-          (item: { _id: string; count: number }) => ({
-            date: item._id,
-            count: item.count
-          })
+        dailyScans: buildLastSevenDays(
+          result?.daily ?? [],
+          startDate
         )
       }
     });
@@ -183,12 +212,10 @@ export const getQRCodeAnalytics: RequestHandler = async (
         iosScans: deviceCounts.ios,
         androidScans: deviceCounts.android,
         otherScans: deviceCounts.other,
-        dailyScans: (result?.daily ?? []).map(
-          (item: { _id: string; count: number }) => ({
-            date: item._id,
-            count: item.count
-          })
-        )
+        dailyScans: buildLastSevenDays(
+  result?.daily ?? [],
+  startDate
+)
       }
     });
   } catch (error) {
