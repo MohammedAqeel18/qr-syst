@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "@/lib/api";
 import DailyScansChart from "@/components/DailyScansChart";
+import AnalyticsExport from "@/components/AnalyticsExport";
+
 import {
   Cell,
   Pie,
@@ -351,7 +353,7 @@ export default function AnalyticsContent() {
           </div>
         </section>
 
-        
+        <AnalyticsExport/>
       </div>
     </main>
   );
