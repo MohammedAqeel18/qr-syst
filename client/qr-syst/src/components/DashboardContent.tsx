@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { apiRequest } from "@/lib/api";
 import DailyScansChart from "./DailyScansChart";
-import AdminLayout from "@/components/AdminLayout";
+
 
 interface AnalyticsSummary {
   totalScans: number;
@@ -74,9 +74,8 @@ export default function DashboardContent() {
     },
   ];
 
-  return (
-    <AdminLayout>
-      <main className="min-w-0 flex-1 p-6 md:p-10">
+return (
+  <main className="min-w-0 flex-1 p-6 md:p-10">
         <header className="mb-8">
           <p className="text-sm font-medium text-blue-600">
             OVERVIEW
@@ -162,6 +161,6 @@ export default function DashboardContent() {
           </div>
         </section>
       </main>
-    </AdminLayout>
+
   );
 }

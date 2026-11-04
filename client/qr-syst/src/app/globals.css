@@ -45,3 +45,25 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+:root {
+  --analytics-grid: #e5e7eb;
+  --analytics-text: #64748b;
+  --analytics-cursor: #cbd5e1;
+  --analytics-dot-border: #ffffff;
+
+  --analytics-tooltip-bg: #ffffff;
+  --analytics-tooltip-border: #e5e7eb;
+  --analytics-tooltip-text: #0f172a;
+}
+
+.dark {
+  --analytics-grid: #303036;
+  --analytics-text: #a1a1aa;
+  --analytics-cursor: #52525b;
+  --analytics-dot-border: #18181b;
+
+  --analytics-tooltip-bg: #202024;
+  --analytics-tooltip-border: #3f3f46;
+  --analytics-tooltip-text: #fafafa;
+}
