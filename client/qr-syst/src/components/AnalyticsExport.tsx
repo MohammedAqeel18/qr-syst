@@ -3,9 +3,7 @@
 
 import { useState } from "react";
 
-// --------------------------------------------------
-// Helper 1: Get today's date in Qatar
-// --------------------------------------------------
+
 
 function getQatarDateString(date: Date): string {
   const parts = new Intl.DateTimeFormat("en-GB", {
@@ -21,22 +19,20 @@ function getQatarDateString(date: Date): string {
   return `${get("year")}-${get("month")}-${get("day")}`;
 }
 
-// --------------------------------------------------
-// Helper 2: Calculate the default reporting period
-// --------------------------------------------------
+
 
 function getDefaultDates() {
   const today = new Date();
 
-  // Get the current Qatar calendar date.
+
   const endDate = getQatarDateString(today);
 
-  // Use UTC for calendar-day arithmetic only.
+
   const end = new Date(`${endDate}T00:00:00.000Z`);
 
   const start = new Date(end);
 
-  // Default period: last seven calendar days.
+
   start.setUTCDate(start.getUTCDate() - 6);
 
   return {
@@ -45,9 +41,7 @@ function getDefaultDates() {
   };
 }
 
-// --------------------------------------------------
-// Main CSV export component
-// --------------------------------------------------
+
 
 export default function AnalyticsExport() {
   const defaultDates = getDefaultDates();
@@ -66,7 +60,7 @@ export default function AnalyticsExport() {
 
   const [success, setSuccess] = useState("");
 
-  // Calculate the selected date range.
+
   const start = new Date(`${startDate}T00:00:00.000Z`);
 
   const end = new Date(`${endDate}T00:00:00.000Z`);
@@ -74,7 +68,7 @@ export default function AnalyticsExport() {
   const dayDifference =
     (end.getTime() - start.getTime()) / 86400000;
 
-  // Validate the selected dates.
+
   const invalidDates =
     !startDate ||
     !endDate ||
@@ -83,9 +77,7 @@ export default function AnalyticsExport() {
     dayDifference < 0 ||
     dayDifference > 365;
 
-  // ------------------------------------------------
-  // Download CSV report
-  // ------------------------------------------------
+
 
   async function handleDownload() {
     setError("");
@@ -102,13 +94,13 @@ export default function AnalyticsExport() {
     try {
       setDownloading(true);
 
-      // Prepare backend query parameters.
+
       const params = new URLSearchParams({
         startDate,
         endDate,
       });
 
-      // Send authenticated request.
+   
       const response = await fetch(
         `/api/analytics/export?${params.toString()}`,
         {
@@ -120,7 +112,7 @@ export default function AnalyticsExport() {
         }
       );
 
-      // Handle backend errors.
+    
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
 
@@ -130,17 +122,17 @@ export default function AnalyticsExport() {
         );
       }
 
-      // Convert response into a downloadable file.
+      
       const blob = await response.blob();
 
       if (blob.size === 0) {
         throw new Error("The downloaded report is empty.");
       }
 
-      // Create temporary browser URL.
+   
       const downloadUrl = window.URL.createObjectURL(blob);
 
-      // Create download link.
+
       const link = document.createElement("a");
 
       link.href = downloadUrl;
@@ -148,14 +140,13 @@ export default function AnalyticsExport() {
       link.download =
         `qr-analytics-${startDate}-to-${endDate}.csv`;
 
-      // Start download.
       document.body.appendChild(link);
 
       link.click();
 
       document.body.removeChild(link);
 
-      // Release temporary browser URL.
+   
       window.setTimeout(() => {
         window.URL.revokeObjectURL(downloadUrl);
       }, 1000);
@@ -174,19 +165,17 @@ export default function AnalyticsExport() {
     }
   }
 
-  // ------------------------------------------------
-  // Component UI
-  // ------------------------------------------------
+
 
   return (
-    <section className="mt-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-[#111113] sm:p-6">
+    <section className="mt-8  border border-slate-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-[#111113] sm:p-6">
 
-      {/* Heading */}
+
 
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
 
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
+          <div className="flex h-10 w-10 items-center justify-center  bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
             <span className="text-sm font-bold">
               CSV
             </span>
@@ -205,11 +194,10 @@ export default function AnalyticsExport() {
         </div>
       </div>
 
-      {/* Date selection */}
+
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
 
-        {/* Start date */}
 
         <div>
           <label
@@ -227,11 +215,11 @@ export default function AnalyticsExport() {
             onChange={(event) =>
               setStartDate(event.target.value)
             }
-            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+            className="w-full  border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
           />
         </div>
 
-        {/* End date */}
+
 
         <div>
           <label
@@ -249,13 +237,13 @@ export default function AnalyticsExport() {
             onChange={(event) =>
               setEndDate(event.target.value)
             }
-            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+            className="w-full  border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
           />
         </div>
 
       </div>
 
-      {/* Download action */}
+
 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
@@ -267,11 +255,11 @@ export default function AnalyticsExport() {
           type="button"
           onClick={handleDownload}
           disabled={downloading || invalidDates}
-          className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-slate-900 dark:hover:bg-zinc-200"
+          className="inline-flex items-center justify-center gap-2  bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-slate-900 dark:hover:bg-zinc-200"
         >
           {downloading ? (
             <>
-              <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              <span className="h-4 w-4 animate-spin  border-2 border-current border-t-transparent" />
 
               Preparing report...
             </>
@@ -288,23 +276,23 @@ export default function AnalyticsExport() {
 
       </div>
 
-      {/* Error message */}
+
 
       {error && (
         <p
           role="alert"
-          className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-500/10 dark:text-red-400"
+          className="mt-4  bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-500/10 dark:text-red-400"
         >
           {error}
         </p>
       )}
 
-      {/* Success message */}
+
 
       {success && (
         <p
           role="status"
-          className="mt-4 rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400"
+          className="mt-4 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400"
         >
           {success}
         </p>

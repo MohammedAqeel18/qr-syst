@@ -188,11 +188,11 @@ export default function QRCodesPage() {
     <main className="min-w-0 flex-1 bg-slate-50 px-4 py-6 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl space-y-8">
 
-        {/* Page heading */}
+ 
         <header className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
           <div>
             <div className="mb-3 flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-blue-600" />
+              <span className="h-2 w-2  bg-blue-600" />
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
                 QR Management
               </p>
@@ -208,8 +208,8 @@ export default function QRCodesPage() {
             </p>
           </div>
 
-          <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+          <div className="flex items-center gap-3  border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div className="flex h-10 w-10 items-center justify-center  bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" stroke="currentColor" strokeWidth="1.8">
                 <rect x="3" y="3" width="7" height="7" rx="1" />
                 <rect x="14" y="3" width="7" height="7" rx="1" />
@@ -229,11 +229,11 @@ export default function QRCodesPage() {
           </div>
         </header>
 
-        {/* Global feedback */}
+
         {error && (
           <div
             role="alert"
-            className="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300"
+            className="flex items-start gap-3  border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300"
           >
             <span className="font-bold">!</span>
             <p>{error}</p>
@@ -251,7 +251,7 @@ export default function QRCodesPage() {
         {success && (
           <div
             role="status"
-            className="flex items-center gap-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300"
+            className="flex items-center gap-3  border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300"
           >
             <span className="font-bold">✓</span>
             <p>{success}</p>
@@ -268,7 +268,7 @@ export default function QRCodesPage() {
 
         {/* Statistics */}
         <section className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-6">
+          <div className=" border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
@@ -282,7 +282,7 @@ export default function QRCodesPage() {
                 </p>
               </div>
 
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+              <div className="flex h-12 w-12 items-center justify-center  bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" stroke="currentColor" strokeWidth="1.8">
                   <rect x="3" y="3" width="7" height="7" rx="1" />
                   <rect x="14" y="3" width="7" height="7" rx="1" />
@@ -293,7 +293,7 @@ export default function QRCodesPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-6">
+          <div className="border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
@@ -307,7 +307,7 @@ export default function QRCodesPage() {
                 </p>
               </div>
 
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-600 dark:bg-violet-950 dark:text-violet-400">
+              <div className="flex h-12 w-12 items-center justify-center  bg-violet-50 text-violet-600 dark:bg-violet-950 dark:text-violet-400">
                 <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" stroke="currentColor" strokeWidth="1.8">
                   <path d="M12 3v18M3 12h18" />
                   <rect x="4" y="4" width="16" height="16" rx="4" />
@@ -317,11 +317,11 @@ export default function QRCodesPage() {
           </div>
         </section>
 
-        {/* Create QR section */}
-        <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+       
+        <section className="overflow-hidden  border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <div className="border-b border-slate-100 px-5 py-5 dark:border-slate-800 sm:px-7">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
+              <div className="flex h-10 w-10 items-center justify-center  bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
                 <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" stroke="currentColor" strokeWidth="1.8">
                   <path d="M12 5v14M5 12h14" />
                 </svg>
@@ -354,7 +354,7 @@ export default function QRCodesPage() {
                 minLength={2}
                 maxLength={100}
                 placeholder="e.g. Main App Download"
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-800"
+                className="w-full  border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-800"
               />
               <p className="mt-2 text-xs text-slate-400">
                 Choose a recognizable name to identify this QR code later.
@@ -363,9 +363,9 @@ export default function QRCodesPage() {
 
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
               {/* iOS */}
-              <div className="rounded-xl border border-slate-200 p-4 dark:border-slate-700 sm:p-5">
+              <div className=" border border-slate-200 p-4 dark:border-slate-700 sm:p-5">
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-100">
+                  <div className="flex h-10 w-10 items-center justify-center  bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-100">
                     <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
                       <path d="M16.7 12.8c0-2.2 1.8-3.3 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.7.8-3.4.8s-1.8-.8-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.8-.4 7 1.1 9.3.7 1.1 1.5 2.3 2.6 2.2 1-.1 1.4-.7 2.7-.7s1.7.7 2.8.7c1.2 0 1.9-1.1 2.6-2.2.8-1.3 1.1-2.6 1.1-2.7-.1 0-2.5-1-2.5-3.8ZM14.5 6.2c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.5 1 .1 1.9-.4 2.5-1.1Z" />
                     </svg>
@@ -393,14 +393,14 @@ export default function QRCodesPage() {
                   onChange={(event) => setIosUrl(event.target.value)}
                   required
                   placeholder="https://apps.apple.com/..."
-                  className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-800"
+                  className="w-full  border border-slate-200 bg-slate-50 px-3 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-800"
                 />
               </div>
 
-              {/* Android */}
-              <div className="rounded-xl border border-slate-200 p-4 dark:border-slate-700 sm:p-5">
+              
+              <div className=" border border-slate-200 p-4 dark:border-slate-700 sm:p-5">
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
+                  <div className="flex h-10 w-10 items-center justify-center  bg-emerald-50 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
                     <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
                       <path d="m5.1 4.1 1.4 2.4a8.1 8.1 0 0 1 11 0l1.4-2.4.9.5-1.5 2.5a8.1 8.1 0 0 1 3.2 6.4H2a8.1 8.1 0 0 1 3.2-6.4L3.7 4.6l1.4-.5ZM7 11a.8.8 0 1 0 0-1.6A.8.8 0 0 0 7 11Zm10 0a.8.8 0 1 0 0-1.6.8.8 0 0 0 0 1.6ZM3 14h18v4a2 2 0 0 1-2 2h-1v2h-2v-2H8v2H6v-2H5a2 2 0 0 1-2-2v-4Z" />
                     </svg>
@@ -428,7 +428,7 @@ export default function QRCodesPage() {
                   onChange={(event) => setAndroidUrl(event.target.value)}
                   required
                   placeholder="https://play.google.com/store/apps/..."
-                  className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-800"
+                  className="w-full  border border-slate-200 bg-slate-50 px-3 py-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-800"
                 />
               </div>
             </div>
@@ -442,11 +442,11 @@ export default function QRCodesPage() {
               <button
                 type="submit"
                 disabled={creating}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2  bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500/20 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {creating ? (
                   <>
-                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                    <span className="h-4 w-4 animate-spin  border-2 border-white/40 border-t-white" />
                     Creating QR code...
                   </>
                 ) : (
@@ -460,7 +460,7 @@ export default function QRCodesPage() {
           </form>
         </section>
 
-        {/* QR library */}
+
         <section className="space-y-5">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
@@ -490,21 +490,21 @@ export default function QRCodesPage() {
                 onChange={(event) => setSearchTerm(event.target.value)}
                 placeholder="Search QR codes..."
                 aria-label="Search QR codes"
-                className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                className="w-full  border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 dark:border-slate-800 dark:bg-slate-900 dark:text-white"
               />
             </div>
           </div>
 
           {loading ? (
-            <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center dark:border-slate-800 dark:bg-slate-900">
-              <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-slate-200 border-t-blue-600 dark:border-slate-700 dark:border-t-blue-400" />
+            <div className=" border border-slate-200 bg-white p-12 text-center dark:border-slate-800 dark:bg-slate-900">
+              <div className="mx-auto h-8 w-8 animate-spin  border-2 border-slate-200 border-t-blue-600 dark:border-slate-700 dark:border-t-blue-400" />
               <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
                 Loading your QR codes...
               </p>
             </div>
           ) : filteredQRCodes.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center dark:border-slate-700 dark:bg-slate-900">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+            <div className=" border border-dashed border-slate-300 bg-white px-6 py-14 text-center dark:border-slate-700 dark:bg-slate-900">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center  bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-300">
                 <svg viewBox="0 0 24 24" fill="none" className="h-7 w-7" stroke="currentColor" strokeWidth="1.7">
                   <rect x="3" y="3" width="7" height="7" rx="1" />
                   <rect x="14" y="3" width="7" height="7" rx="1" />
@@ -533,10 +533,10 @@ export default function QRCodesPage() {
                 return (
                   <article
                     key={qr._id}
-                    className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-200/60 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/20"
+                    className="group overflow-hidden  border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-lg hover:shadow-slate-200/60 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:shadow-black/20"
                   >
                     <div className="flex flex-col gap-5 p-5 sm:flex-row sm:p-6">
-                      {/* QR preview */}
+                   
                       <div className="flex shrink-0 flex-col items-center justify-center rounded-2xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950">
                         {scanUrl ? (
                           <QRCodeCanvas
@@ -560,7 +560,7 @@ export default function QRCodesPage() {
                         </span>
                       </div>
 
-                      {/* QR details */}
+                   
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-start justify-between gap-3">
                           <div className="min-w-0">
@@ -572,8 +572,8 @@ export default function QRCodesPage() {
                             </p>
                           </div>
 
-                          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400">
-                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                          <span className="inline-flex shrink-0 items-center gap-1.5  bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400">
+                            <span className="h-1.5 w-1.5  bg-emerald-500" />
                             Generated
                           </span>
                         </div>
@@ -610,7 +610,7 @@ export default function QRCodesPage() {
                       </div>
                     </div>
 
-                    {/* QR metadata */}
+                 
                     <div className="border-t border-slate-100 px-5 py-4 dark:border-slate-800 sm:px-6">
                       <div className="flex flex-col gap-2 text-xs">
                         <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
@@ -644,8 +644,7 @@ export default function QRCodesPage() {
                           </div>
                         )}
                       </div>
-
-                      {/* Actions */}
+                 
                       <div className="mt-4 flex flex-wrap gap-2">
                         <button
                           type="button"
@@ -680,7 +679,7 @@ export default function QRCodesPage() {
         </section>
       </div>
 
-      {/* Delete confirmation modal */}
+ 
       {qrToDelete && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm"
@@ -692,10 +691,10 @@ export default function QRCodesPage() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="delete-dialog-title"
-            className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            className="w-full max-w-md  border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-600 dark:bg-red-950/50 dark:text-red-400">
+            <div className="flex h-12 w-12 items-center justify-center  bg-red-50 text-red-600 dark:bg-red-950/50 dark:text-red-400">
               <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" stroke="currentColor" strokeWidth="1.8">
                 <path d="M12 9v4m0 4h.01M10.3 3.9 2.8 17a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3l-7.5-13.1a2 2 0 0 0-3.4 0Z" />
               </svg>
@@ -721,7 +720,7 @@ export default function QRCodesPage() {
                 type="button"
                 onClick={() => setQrToDelete(null)}
                 disabled={deletingId !== null}
-                className="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                className=" border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 Cancel
               </button>
@@ -730,7 +729,7 @@ export default function QRCodesPage() {
                 type="button"
                 onClick={handleDelete}
                 disabled={deletingId !== null}
-                className="rounded-xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+                className="bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {deletingId === qrToDelete.qrId
                   ? "Deleting..."

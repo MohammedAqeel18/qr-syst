@@ -133,7 +133,7 @@ export default function AnalyticsContent() {
     <main className="min-h-screen bg-slate-50 px-5 py-8 text-slate-900 transition-colors dark:bg-[#09090b] dark:text-zinc-100 sm:px-8">
       <div className="mx-auto max-w-7xl">
 
-        {/* Page heading */}
+      
         <header className="mb-8 flex flex-col justify-between gap-4 border-b border-slate-200 pb-7 dark:border-zinc-800 sm:flex-row sm:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
@@ -158,7 +158,7 @@ export default function AnalyticsContent() {
           </div>
         </header>
 
-        {/* KPI overview */}
+       
         <section>
           <div className="mb-4 flex items-center justify-between">
             <div>
@@ -175,7 +175,7 @@ export default function AnalyticsContent() {
             {stats.map((stat) => (
               <article
                 key={stat.title}
-                className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-colors dark:border-zinc-800 dark:bg-[#111113]"
+                className=" border border-slate-200 bg-white p-5 shadow-sm transition-colors dark:border-zinc-800 dark:bg-[#111113]"
               >
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-medium text-slate-500 dark:text-zinc-400">
@@ -183,7 +183,7 @@ export default function AnalyticsContent() {
                   </p>
 
                   <div
-                    className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold ${stat.lightColor}`}
+                    className={`flex h-9 w-9 items-center justify-center  text-sm font-semibold ${stat.lightColor}`}
                   >
                     {stat.initial}
                   </div>
@@ -201,8 +201,7 @@ export default function AnalyticsContent() {
           </div>
         </section>
 
-        {/* Daily scan activity */}
-        <section className="mt-8 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#111113]">
+        <section className="mt-8 overflow-hidden  border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#111113]">
           <div className="flex flex-col justify-between gap-3 border-b border-slate-100 px-5 py-5 dark:border-zinc-800 sm:flex-row sm:items-center sm:px-6">
             <div>
               <h2 className="text-base font-semibold text-slate-900 dark:text-white">
@@ -214,7 +213,7 @@ export default function AnalyticsContent() {
               </p>
             </div>
 
-            <span className="w-fit rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
+            <span className="w-fit  border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
               Daily
             </span>
           </div>
@@ -226,8 +225,8 @@ export default function AnalyticsContent() {
           </div>
         </section>
 
-        {/* Device breakdown */}
-        <section className="mt-8 rounded-xl border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#111113]">
+
+        <section className="mt-8  border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-[#111113]">
           <div className="border-b border-slate-100 px-5 py-5 dark:border-zinc-800 sm:px-6">
             <h2 className="text-base font-semibold text-slate-900 dark:text-white">
               Device breakdown
@@ -239,7 +238,7 @@ export default function AnalyticsContent() {
           </div>
 
           <div className="grid grid-cols-1 items-center gap-8 p-5 sm:p-6 lg:grid-cols-2">
-            {/* Donut chart */}
+      
             <div className="relative mx-auto h-64 w-full max-w-xs">
               {totalDeviceScans > 0 ? (
                 <>
@@ -302,7 +301,7 @@ export default function AnalyticsContent() {
               )}
             </div>
 
-            {/* Device legend */}
+
             <div className="space-y-5">
               {deviceStats.map((device, index) => {
                 const percentage =
@@ -337,7 +336,7 @@ export default function AnalyticsContent() {
                       </div>
                     </div>
 
-                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-zinc-800">
+                    <div className="mt-3 h-2 overflow-hidden  bg-slate-100 dark:bg-zinc-800">
                       <div
                         className="h-full rounded-full transition-all duration-500"
                         style={{

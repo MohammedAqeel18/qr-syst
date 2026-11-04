@@ -15,6 +15,7 @@ const navigationItems = [
   { label: "Dashboard", href: "/" },
   { label: "Analytics", href: "/analytics" },
   { label: "QR Codes", href: "/qr-codes" },
+  { label: "Admin Details", href: "/admin-details" },
 ];
 
 type ThemeOption = "light" | "dark" | "system";
