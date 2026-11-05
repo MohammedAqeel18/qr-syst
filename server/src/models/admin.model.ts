@@ -2,6 +2,7 @@
 import mongoose, { Schema, type Model } from "mongoose";
 
 export interface Admin {
+  username: string;
   email: string;
   passwordHash: string;
   role: "admin";
@@ -11,6 +12,16 @@ export interface Admin {
 
 const adminSchema = new Schema<Admin>(
   {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+      minlength: 3,
+      maxlength: 30,
+    },
+
     email: {
       type: String,
       required: true,
